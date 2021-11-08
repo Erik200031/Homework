@@ -42,14 +42,14 @@ void Person::set_email(std::string email){
   this->email = email;
 }
 
-int Person::get_age(){
+int Person::get_age()const{
   return age;
 }
 
-std::string Person::get_name(){
+std::string Person::get_name()const{
   return name;
 }
 
-std::string Person::get_email(){
+std::string Person::get_email()const{
   return email;
 }
