@@ -20,11 +20,11 @@
     this->mp.insert(std::pair<double,double>(inx,iny));
   }
 
-  double Point2D::get_x(){
+  double Point2D::get_x()const{
     return this->mp.begin()->first;
   }
 
-  double Point2D::get_y(){
+  double Point2D::get_y()const{
     return this->mp.begin()->second;
   }
 
@@ -45,16 +45,7 @@
     return tmp;
   }
 
-  Point2D operator+(double xy, Point2D obj){
-    Point2D tmp;
-    auto tmpit = tmp.mp.begin();
-    tmp.mp.erase(tmpit);
-    auto it = obj.mp.begin();
-    tmp.mp.insert(std::pair<double,double>( it->first+xy,it->second+xy));
-    return tmp;
-  }
-
-  Point2D Point2D::operator+=(const Point2D & obj){
+  Point2D& Point2D::operator+=(const Point2D & obj){
     double tmpsum,tmpsum1;
     auto it = this->mp.begin();
     auto itr = obj.mp.begin();
@@ -75,16 +66,7 @@
     return tmp;
   }
 
-  Point2D operator-(double xy, Point2D obj){
-    Point2D tmp;
-    auto tmpit = tmp.mp.begin();
-    tmp.mp.erase(tmpit);
-    auto it = obj.mp.begin();
-    tmp.mp.insert(std::pair<double,double>( it->first-xy,it->second-xy));
-    return tmp;
-  }
-
-  Point2D Point2D::operator-=(const Point2D & obj){
+  Point2D& Point2D::operator-=(const Point2D & obj){
     double tmpsub,tmpsub1;
     auto it = this->mp.begin();
     auto itr = obj.mp.begin();
@@ -105,16 +87,7 @@
     return tmp;
   }
 
-  Point2D operator*(double xy, Point2D obj){
-    Point2D tmp;
-    auto tmpit = tmp.mp.begin();
-    tmp.mp.erase(tmpit);
-    auto it = obj.mp.begin();
-    tmp.mp.insert(std::pair<double,double>( it->first*xy,it->second*xy));
-    return tmp;
-  }
-
-  Point2D Point2D::operator*=(const Point2D & obj){
+  Point2D& Point2D::operator*=(const Point2D & obj){
     double tmpmul,tmpmul1;
     auto it = this->mp.begin();
     auto itr = obj.mp.begin();
@@ -122,36 +95,6 @@
     tmpmul1=it->second*itr->second;
     this->mp.erase(it);
     this->mp.insert(std::pair<double,double>(tmpmul,tmpmul1));
-    return *this;
-  }
-
-  Point2D Point2D::operator/(const Point2D & obj){
-    Point2D tmp;
-    auto tmpit = tmp.mp.begin();
-    tmp.mp.erase(tmpit);
-    auto it = this->mp.begin();
-    auto itr = obj.mp.begin();
-    tmp.mp.insert(std::pair<double,double>( it->first/itr->first,it->second/itr->second));
-    return tmp;
-  }
-
-  Point2D operator/(double xy, Point2D obj){
-    Point2D tmp;
-    auto tmpit = tmp.mp.begin();
-    tmp.mp.erase(tmpit);
-    auto it = obj.mp.begin();
-    tmp.mp.insert(std::pair<double,double>( it->first/xy,it->second/xy));
-    return tmp;
-  }
-
-  Point2D Point2D::operator/=(const Point2D & obj){
-    double tmpdiv,tmpdiv1;
-    auto it = this->mp.begin();
-    auto itr = obj.mp.begin();
-    tmpdiv=it->first/itr->first;
-    tmpdiv1=it->second/itr->second;
-    this->mp.erase(it);
-    this->mp.insert(std::pair<double,double>(tmpdiv,tmpdiv1));
     return *this;
   }
 
@@ -191,7 +134,7 @@
   bool Point2D::operator!=(const Point2D & obj)const{
     auto it = this->mp.begin();
     auto itr = obj.mp.begin();
-    if(it->first != itr->first && it->second != itr->second){
+    if(it->first != itr->first || it->second != itr->second){
       return true;
     }
     else{
