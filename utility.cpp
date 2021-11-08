@@ -3,19 +3,15 @@
 //implement ctors
 Utility::Utility(){}
 
-Utility::Utility(const Utility & obj){
-  this->inputstr=obj.inputstr;
-}
-
 //implement methods
 
 bool Utility::isNumber(std::string instr){
-  inputstr=instr;
-  if (inputstr.empty())
+  
+  if (instr.empty())
   {
      return false;
   }
-  if((inputstr[0] == '+' || inputstr[0] == '0') && inputstr.size() > 5 ){
+  if((instr[0] == '+' || instr[0] == '0') && instr.size() > 5 ){
     return true;
   }
   else{
@@ -24,12 +20,12 @@ bool Utility::isNumber(std::string instr){
 }
 
 bool Utility::isInteger(std::string instr){
-  inputstr=instr;
-  if (inputstr.empty())
+
+  if (instr.empty())
   {
      return false;
   }
-  int tmp = std::stoi(inputstr);
+  int tmp = std::stoi(instr);
   if(tmp > -2147483647 && tmp <2147483647){
     return true;
   }
@@ -39,12 +35,12 @@ bool Utility::isInteger(std::string instr){
 }
 
 bool Utility::isFloat(std::string instr){
-  inputstr=instr;
-  if (inputstr.empty())
+
+  if (instr.empty())
   {
      return false;
   }
-  float tmp = std::stof(inputstr);
+  float tmp = std::stof(instr);
   if(tmp > -2147483647 && tmp <2147483647){
     return true;
   }
@@ -54,12 +50,11 @@ bool Utility::isFloat(std::string instr){
 }
 
 bool Utility::isBoolean(std::string instr){
-  inputstr=instr;
-  if (inputstr.empty())
+  if (instr.empty())
   {
      return false;
   }
-  if(inputstr=="True" || inputstr=="TRUE" || inputstr=="true"){
+  if(instr=="True" || instr=="TRUE" || instr=="true"){
     return true;
   }
   else {
@@ -68,19 +63,18 @@ bool Utility::isBoolean(std::string instr){
 }
 
 bool Utility::isEmail(std::string instr){
-  inputstr=instr;
-  if (inputstr.empty())
+  if (instr.empty())
   {
      return false;
   }
   int count{};
-  for(int i=0;i<inputstr.size();i++){
+  for(int i=0;i<instr.size();i++){
     count++;
-    if(inputstr[i] == '@'){
+    if(instr[i] == '@'){
       if(count<=1){return false;}
       count = 0;
     }
-    if(inputstr[i] == '.'){
+    if(instr[i] == '.'){
       if(count <= 1){return false;}
       count=0;
     }
@@ -89,13 +83,12 @@ bool Utility::isEmail(std::string instr){
 }
 
 bool Utility::isURL(std::string instr){
-  inputstr=instr;
   const std::regex pattern("((http|https)://)(www.)?[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)");
- if (inputstr.empty())
+ if (instr.empty())
   {
      return false;
   }
-  if(regex_match(inputstr, pattern))
+  if(regex_match(instr, pattern))
   {
     return true;
   }
