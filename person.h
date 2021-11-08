@@ -8,9 +8,9 @@ public:
   void set_age(int);
   void set_name(std::string);
   void set_email(std::string);
-  int get_age();
-  std::string get_name();
-  std::string get_email();
+  int get_age()const;
+  std::string get_name()const;
+  std::string get_email()const;
 public:
   Person();
   Person(std::string);
