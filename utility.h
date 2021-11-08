@@ -7,17 +7,14 @@
 class Utility{
 public:
   Utility();
-  Utility(const Utility &);
   ~Utility(){}
 public:
-  bool isNumber(std::string);
-  bool isInteger(std::string);
-  bool isFloat(std::string);
-  bool isBoolean(std::string);
-  bool isEmail(std::string);
-  bool isURL(std::string);
-private:
-  std::string inputstr;
+ static bool isNumber(std::string);
+ static bool isInteger(std::string);
+ static bool isFloat(std::string);
+ static bool isBoolean(std::string);
+ static bool isEmail(std::string);
+ static bool isURL(std::string);
 };
 
 #endif //UTILITY_H_
